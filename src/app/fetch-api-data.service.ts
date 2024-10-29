@@ -58,6 +58,18 @@ export class FetchApiDataService {
     );
   }
 
+  // Making the api call for the get movie director endpoint
+  public getMovieDirector(movieDirector: String): Observable<any> {
+    const token = this.getToken();
+    return this.http.get(apiUrl + 'movies/director/' + movieDirector, {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  } 
+  
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
