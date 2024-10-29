@@ -13,12 +13,12 @@ export class FetchApiDataService {
   constructor(private http: HttpClient) {
   }
 
- // Making the api call for the user registration endpoint
   //Get token from local storage
   private getToken(): string {
     return localStorage.getItem('token') || '';
   }
 
+  // Making the api call for the user registration endpoint
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
