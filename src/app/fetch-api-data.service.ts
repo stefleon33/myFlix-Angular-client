@@ -35,6 +35,18 @@ export class FetchApiDataService {
   }
 
 private handleError(error: HttpErrorResponse): any {
+  // Making the api call for the get all movies endpoint
+  public getAllMovies(): Observable<any> {
+    const token = this.getToken();
+    return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
+
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
     } else {
