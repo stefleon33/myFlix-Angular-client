@@ -94,10 +94,10 @@ export class FetchApiDataService {
     );
   } 
   
-  // Making the api call for the get user endpoint
-  public getUser(): Observable<any> {
+  // Making the api call for the get user favorite movie endpoint
+  public getUserFavoriteMovies(username: String, movieTitle: String): Observable<any> {
     const token = this.getToken();
-    return this.http.get(apiUrl + 'users', {headers: new HttpHeaders(
+    return this.http.get(apiUrl + 'users/' + username +'movies/' + movieTitle, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
