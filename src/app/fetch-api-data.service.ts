@@ -130,6 +130,17 @@ export class FetchApiDataService {
     );
   }
 
+  // Making the api call for the edit user endpoint
+  public editUserFavoriteMovies(username: String, userDetails: any): Observable<any> {
+    const token = this.getToken();
+    return this.http.put(apiUrl + 'users/' + username, userDetails, {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  } 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
