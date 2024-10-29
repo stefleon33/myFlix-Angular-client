@@ -106,6 +106,18 @@ export class FetchApiDataService {
     );
   } 
 
+  // Making the api call for the add user favorite movie endpoint
+  public addUserFavoriteMovies(username: String, movieTitle: String): Observable<any> {
+    const token = this.getToken();
+    return this.http.post(apiUrl + 'users/' + username +'movies/' + movieTitle, {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  } 
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
