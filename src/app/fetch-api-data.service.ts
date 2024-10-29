@@ -94,6 +94,17 @@ export class FetchApiDataService {
     );
   } 
   
+  // Making the api call for the get user endpoint
+  public getUser(): Observable<any> {
+    const token = this.getToken();
+    return this.http.get(apiUrl + 'users', {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  } 
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
