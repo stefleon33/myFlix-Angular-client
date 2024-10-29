@@ -141,6 +141,19 @@ export class FetchApiDataService {
       catchError(this.handleError)
     );
   } 
+
+  // Making the api call for the delete user endpoint
+  public deleteUser(username: String): Observable<any> {
+    const token = this.getToken();
+    return this.http.delete(apiUrl + 'users/' + username , {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }  
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
