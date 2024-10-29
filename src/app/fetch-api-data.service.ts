@@ -14,6 +14,11 @@ export class FetchApiDataService {
   }
 
  // Making the api call for the user registration endpoint
+  //Get token from local storage
+  private getToken(): string {
+    return localStorage.getItem('token') || '';
+  }
+
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
