@@ -46,6 +46,17 @@ export class FetchApiDataService {
     );
   }
 
+  // Making the api call for the get one movie endpoint
+  public getMovie(movieTitle: String): Observable<any> {
+    const token = this.getToken();
+    return this.http.get(apiUrl + 'movies/' + movieTitle, {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
 
 
   private handleError(error: HttpErrorResponse): any {
