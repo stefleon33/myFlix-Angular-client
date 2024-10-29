@@ -34,7 +34,6 @@ export class FetchApiDataService {
     );
   }
 
-private handleError(error: HttpErrorResponse): any {
   // Making the api call for the get all movies endpoint
   public getAllMovies(): Observable<any> {
     const token = this.getToken();
@@ -47,6 +46,9 @@ private handleError(error: HttpErrorResponse): any {
     );
   }
 
+
+
+  private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
     } else {
@@ -57,5 +59,11 @@ private handleError(error: HttpErrorResponse): any {
 
     return throwError(
     'Something bad happened; please try again later.');
+  }
+
+  // Non-typed response extraction
+  private extractResponseData(res: Response): any {
+    const body = res;
+    return body || { };
   }
 }
