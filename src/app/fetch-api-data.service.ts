@@ -8,7 +8,7 @@ const apiUrl = 'https://movie-api33-c32ceac54882.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })
-export class FetchApiDataService {
+export class UserRegistrationService {
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
   }
