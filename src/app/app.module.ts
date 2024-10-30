@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,15 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [
     provideAnimationsAsync()
