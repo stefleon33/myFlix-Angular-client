@@ -27,6 +27,11 @@ getMovies(): void {
       this.movies = resp;
       console.log(this.movies);
       return this.movies;
-    });
-  }
+  });
+}
+
+showGenreAlert(genre: any): void {
+  alert(genre);
+}
+
 }
