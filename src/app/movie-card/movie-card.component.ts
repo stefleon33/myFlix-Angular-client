@@ -43,4 +43,18 @@ showDirectorAlert(director: any): void {
 showDescriptionAlert(description: any): void {
   alert(description);
 }
+
+//Function to add to favorites using FetchApiDataService
+addToFavorties(movieTitle: string): void {
+  const user: any = JSON.parse(localStorage.getItem('user') as any);
+    this.fetchApiData
+      .addUserFavoriteMovies(user.Username, movieTitle)
+      .subscribe((res:any) => {
+        console.log(res);
+        this.getMovies();
+      });
+      this.snackBar.open("movie added to favorites", 'OK', {
+        duration: 2000
+      });
+  };
 }
