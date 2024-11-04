@@ -34,4 +34,11 @@ showGenreAlert(genre: any): void {
   alert(genre);
 }
 
+showDirectorAlert(director: any): void {
+  alert(director);
+}
+
+showDescriptionAlert(description: any): void {
+  alert(description);
+}
 }
