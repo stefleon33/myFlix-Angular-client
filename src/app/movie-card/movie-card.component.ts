@@ -57,4 +57,19 @@ addToFavorties(movieTitle: string): void {
         duration: 2000
       });
   };
+
+//Function to remove favorites using FetchApiDataService
+deleteFromFavorties(movieTitle: string): void {
+  const user: any = JSON.parse(localStorage.getItem('user') as any);
+    this.fetchApiData
+      .deleteUserFavoriteMovies(user.Username, movieTitle)
+      .subscribe((res:any) => {
+        console.log(res);
+        this.getMovies();
+      });
+      this.snackBar.open("movie removed from favorites", 'OK', {
+        duration: 2000
+      });
+  };
+
 }
