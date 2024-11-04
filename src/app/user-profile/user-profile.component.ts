@@ -17,5 +17,10 @@ export class UserProfileComponent implements OnInit {
     public router: Router
   ) { this.userData = JSON.parse(localStorage.getItem("user") || ""); }
 
+ngOnInit(): void {
+  this.getUser();
+  this.getFavoriteMovies();
+}
+
 
 }
