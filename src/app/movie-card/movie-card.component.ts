@@ -1,6 +1,8 @@
 // src/app/movie-card/movie-card.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from 'express';
 
 @Component({
   selector: 'app-movie-card',
@@ -9,7 +11,11 @@ import { FetchApiDataService } from '../fetch-api-data.service'
 })
 export class MovieCardComponent {
   movies: any[] = [];
-  constructor(public fetchApiData: FetchApiDataService) { }
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public snackBar:MatSnackBar,
+    public router: Router
+  ) { }
 
 ngOnInit(): void {
   this.getMovies();
