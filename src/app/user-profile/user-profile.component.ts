@@ -8,6 +8,14 @@ import { Router } from  '@angular/router';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
+  userData: any = {};
+  favoriteMovies: any[] = [];
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public snackBar:MatSnackBar,
+    public router: Router
+  ) { this.userData = JSON.parse(localStorage.getItem("user") || ""); }
+
 
 }
