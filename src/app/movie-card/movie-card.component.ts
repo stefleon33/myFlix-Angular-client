@@ -21,6 +21,7 @@ ngOnInit(): void {
   this.getMovies();
 }
 
+//Function to get all movies using FetchApiDataService
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
