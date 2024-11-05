@@ -49,10 +49,11 @@ export class FetchApiDataService {
   // Making the api call for the get one movie endpoint
   public getMovie(movieTitle: String): Observable<any> {
     const token = this.getToken();
-    return this.http.get(apiUrl + 'movies/' + movieTitle, {headers: new HttpHeaders(
-      {
+    return this.http.get(apiUrl + 'movies/' + movieTitle, {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -61,10 +62,11 @@ export class FetchApiDataService {
   // Making the api call for the get movie director endpoint
   public getMovieDirector(movieDirector: String): Observable<any> {
     const token = this.getToken();
-    return this.http.get(apiUrl + 'movies/director/' + movieDirector, {headers: new HttpHeaders(
-      {
+    return this.http.get(apiUrl + 'movies/director/' + movieDirector, {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -73,10 +75,11 @@ export class FetchApiDataService {
   // Making the api call for the get movie genre endpoint
   public getMovieGenre(movieGenre: String): Observable<any> {
     const token = this.getToken();
-    return this.http.get(apiUrl + 'movies/Genre/' + movieGenre, {headers: new HttpHeaders(
-      {
+    return this.http.get(apiUrl + 'movies/Genre/' + movieGenre, {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -85,10 +88,11 @@ export class FetchApiDataService {
   // Making the api call for the get user endpoint
   public getUser(username: String,): Observable<any> {
     const token = this.getToken();
-    return this.http.get(apiUrl + 'users' + username, {headers: new HttpHeaders(
-      {
+    return this.http.get(apiUrl + 'users/' + username, {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -97,10 +101,11 @@ export class FetchApiDataService {
   // Making the api call for the get user favorite movie endpoint
   public getUserFavoriteMovies(username: String, movieTitle: String): Observable<any> {
     const token = this.getToken();
-    return this.http.get(apiUrl + 'users/' + username +'movies/' + movieTitle, {headers: new HttpHeaders(
-      {
+    return this.http.get(apiUrl + 'users/' + username + 'movies/' + movieTitle, {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -109,10 +114,11 @@ export class FetchApiDataService {
   // Making the api call for the add user favorite movie endpoint
   public addUserFavoriteMovies(username: String, movieTitle: String): Observable<any> {
     const token = this.getToken();
-    return this.http.post(apiUrl + 'users/' + username +'movies/' + movieTitle, {headers: new HttpHeaders(
-      {
+    return this.http.post(apiUrl + 'users/' + username + 'movies/' + movieTitle, {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -121,10 +127,11 @@ export class FetchApiDataService {
   // Making the api call for the delete user favorite movie endpoint
   public deleteUserFavoriteMovies(username: String, movieTitle: String): Observable<any> {
     const token = this.getToken();
-    return this.http.delete(apiUrl + 'users/' + username +'movies/' + movieTitle, {headers: new HttpHeaders(
-      {
+    return this.http.delete(apiUrl + 'users/' + username + 'movies/' + movieTitle, {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -133,10 +140,11 @@ export class FetchApiDataService {
   // Making the api call for the edit user endpoint
   public editUser(username: String, userDetails: any): Observable<any> {
     const token = this.getToken();
-    return this.http.put(apiUrl + 'users/' + username, userDetails, {headers: new HttpHeaders(
-      {
+    return this.http.put(apiUrl + 'users/' + username, userDetails, {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
@@ -145,10 +153,11 @@ export class FetchApiDataService {
   // Making the api call for the delete user endpoint
   public deleteUser(username: String): Observable<any> {
     const token = this.getToken();
-    return this.http.delete(apiUrl + 'users/' + username , {headers: new HttpHeaders(
-      {
+    return this.http.delete(apiUrl + 'users/' + username , {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );

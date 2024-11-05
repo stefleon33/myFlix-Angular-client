@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from  '@angular/router';
 
 @Component({
@@ -15,7 +16,7 @@ export class UserProfileComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public snackBar:MatSnackBar,
     public router: Router
-  ) { this.userData = JSON.parse(localStorage.getItem("user") || ""); }
+  ) { }
 
 ngOnInit(): void {
   this.getUser();
