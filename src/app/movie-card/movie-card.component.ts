@@ -33,15 +33,8 @@ export class MovieCardComponent implements OnInit {
       .getAllMovies()
       .subscribe((resp: any) => {
         this.movies = resp;
-
-        let user = JSON.parse(localStorage.getItem("user") || "");
-        this.movies.forEach((movie: any) => {
-          movie.isFavorite = user.favoriteMovies.includes(movie._id);
-        })
         return this.movies;
-    }, err => {
-      console.error(err)
-    })
+    });
   }
 
   showGenre(movie: any): void {
