@@ -17,7 +17,7 @@ export class MovieCardComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public router: Router,
-    public snackbar: MatSnackBar
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -80,7 +80,7 @@ export class MovieCardComponent implements OnInit {
         
         user.favoriteMovies = res.favoriteMovies;
         localStorage.setItem("user", JSON.stringify(user));
-        this.snackbar.open(`Movie removed from favorties`, 'OK', {
+        this.snackBar.open(`Movie removed from favorties`, 'OK', {
           duration: 2000
         });
       }, err => {
@@ -92,7 +92,7 @@ export class MovieCardComponent implements OnInit {
         
         user.favoriteMovies = res.favoriteMovies;
         localStorage.setItem("user", JSON.stringify(user));
-        this.snackbar.open(`Movie added to favorties`, 'OK', {
+        this.snackBar.open(`Movie added to favorties`, 'OK', {
           duration: 2000
         });
       }, err => {
