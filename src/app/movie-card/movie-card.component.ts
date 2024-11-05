@@ -75,7 +75,7 @@ export class MovieCardComponent implements OnInit {
     let icon = document.getElementById(`${movie._id}-favorite-icon`);
 
     if (user.favoriteMovies.includes(movie._id)) {
-      this.fetchApiData.deleteUserFavoriteMovies(user.id, movie.title).subscribe(res => {
+      this.fetchApiData.deleteUserFavoriteMovies(user.id, movie.Title).subscribe(res => {
         icon?.setAttribute("fontIcon", "favorite_border");
         
         user.favoriteMovies = res.favoriteMovies;
@@ -87,7 +87,7 @@ export class MovieCardComponent implements OnInit {
         console.error(err)
       })
     } else {
-      this.fetchApiData.addUserFavoriteMovies(user.id, movie.title).subscribe(res => {
+      this.fetchApiData.addUserFavoriteMovies(user.id, movie.Title).subscribe(res => {
         icon?.setAttribute("fontIcon", "favorite_border");
         
         user.favoriteMovies = res.favoriteMovies;
