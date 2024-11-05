@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -12,6 +12,9 @@ import { Router } from  '@angular/router';
 export class UserProfileComponent implements OnInit {
   userData: any = {};
   favoriteMovies: any[] = [];
+  
+  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '', favoriteMovies: []};
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar:MatSnackBar,
