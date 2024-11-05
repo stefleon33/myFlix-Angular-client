@@ -38,5 +38,19 @@ getUser(): void {
 });
 }
 
+editUser(): void {
+  this.fetchApiData.editUser(this.userData.Username, this.userData).subscribe((resp: any) => {
+    this.userData = {
+      ...resp,
+      id: resp._id,
+      password: this.userData.password,
+      token: this.userData.token
+    };
+    localStorage.setItem("user", JSON.stringify(this.userData));
+    this.snackBar.open(`User profile updated`, 'OK', {
+          duration: 2000
+        });
+});
+}
 
 }
