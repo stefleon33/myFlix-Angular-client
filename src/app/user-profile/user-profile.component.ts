@@ -26,20 +26,12 @@ export class UserProfileComponent implements OnInit {
     this.getFavoriteMovies();
   }
 
-getUser(): void {
-    this.fetchApiData.getUser(this.userData.Username).subscribe((res: any) => {
-      this.userData={
-        ...res,
-        id: res._id,
-        Username: this.userData.Username, 
-        email: this.userData.Email, 
-        birthday: this.userData.birthday,
-        token: this.userData.token}
-      
- localStorage.setItem("user", JSON.stringify(this.userData));
-      this.getFavoriteMovies();  
-});
-}
+  getUser(): void {
+    this.fetchApiData.getUser().subscribe((response: any) => {
+      this.user = response;
+      this.userData.Username = this.user.Username, 
+      this.userData.Email = this.user.Email, 
+      this.userData.Birthday = this.user.Birthday,
 
 editUser(): void {
   this.fetchApiData.editUser(this.userData.Username, this.userData).subscribe((resp: any) => {
@@ -55,6 +47,11 @@ editUser(): void {
         });
 });
 }
+      this.fetchApiData.getAllMovies().subscribe((response: any) =>{
+        //this.favoriteMovies = response.filter((m: {_id:any}) => this.user.favoriteMovies.indexOf(m._id) >= 0)
+      })
+    })
+  }
 
 deleteUser(): void {
   this.fetchApiData.deleteUser(this.userData).subscribe((resp: any) => {
