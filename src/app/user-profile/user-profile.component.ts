@@ -10,7 +10,7 @@ import { Router } from  '@angular/router';
   styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent implements OnInit {
-  userData: any = {};
+  user: any = {};
   favoriteMovies: any[] = [];
   
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '', favoriteMovies: []};
