@@ -44,18 +44,10 @@ export class UserProfileComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify(data));
       localStorage.setItem('Username', JSON.stringify(data.Username));
 
-getFavoriteMovies(): void {
-  this.fetchApiData.getAllMovies().subscribe((res:any) => {
-    this.favoriteMovies = res.filter((movie: any) => {
-      return this.userData.favoriteMovies.includes(movie._id)
-    })
-    }, (err: any) => {
-      console.error(err);
       this.snackBar.open('User profile has been updated', 'OK', {
         duration: 2000
       });
     });
-}
   }
 
   deleteUser(): void {
@@ -70,6 +62,15 @@ getFavoriteMovies(): void {
         localStorage.clear();
       })
     }
+  }
+  getFavoriteMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((res:any) => {
+      this.favoriteMovies = res.filter((movieId: any) => {
+        return this.userData.favoriteMovies.includes(movieId)
+      })
+      }, (err: any) => {
+        console.error(err);
+      })
   }
 
 removeFromFavorite(movie: any): void {
