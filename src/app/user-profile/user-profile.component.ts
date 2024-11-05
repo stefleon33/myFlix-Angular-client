@@ -53,4 +53,18 @@ editUser(): void {
 });
 }
 
+deleteUser(): void {
+  this.fetchApiData.deleteUser(this.userData).subscribe((resp: any) => {
+    this.userData = {
+      ...resp,
+      id: resp._id,
+      password: this.userData.password,
+      token: this.userData.token
+    };
+    localStorage.setItem("user", JSON.stringify(this.userData));
+    console.log(this.userData);
+});
+} 
+
+
 }
