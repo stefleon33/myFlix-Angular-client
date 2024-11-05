@@ -110,7 +110,29 @@ addToFavorites(movieId: string): void {
       console.log("User data (username or token) is missing or undefined");
     }
   }
+  
+
+  removeFromFavorites(movieId: string): void {
+    console.log(movieId);
+    this.fetchApiData.deleteFavoriteMovie(movieId).subscribe(() => {
+      this.snackBar.open('Movie removed from favorites', 'OK', {
+        duration: 2000,
+      });
+
+      const username = localStorage.getItem('Username');
+      if (username !== null) {
+        // Fetch the updated favorite movies data
+        this.fetchApiData.getFavoriteMovies().subscribe((favorites: any) => {
+          this.favorites = favorites;
+        });
+      }
+    });
   }
+  
+  /*isFavoriteMovie(movieID: string): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user.FavoriteMovies.indexOf(movieID) >= 0;
+  }*/
 
   redirectProfile(): void {
     this.router.navigate(["profile"]);
