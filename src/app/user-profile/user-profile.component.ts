@@ -66,5 +66,24 @@ deleteUser(): void {
 });
 } 
 
+getFavoriteMovies(): void {
+  this.fetchApiData.getAllMovies().subscribe((res:any) => {
+    this.favoriteMovies = res.filter((movie: any) => {
+      return this.userData.favoriteMovies.includes(movie._id)
+    })
+    }, (err: any) => {
+      console.error(err);
+    });
+}
+
+removeFromFavorite(movie: any): void {
+    this.fetchApiData.deleteUserFavoriteMovies(this.userData.username, movie.movieTitle).subscribe((res:any) => {
+    this.userData.favoriteMovies = res.favoriteMovies;
+    this.getFavoriteMovies();
+    }, (err: any) => {
+      console.error
+    });
+}
+
 
 }
