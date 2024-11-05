@@ -85,5 +85,13 @@ removeFromFavorite(movie: any): void {
     });
 }
 
+  redirectMovies(): void {
+    this.router.navigate(["movies"]);
+  }
+
+  logout(): void {
+    this.router.navigate(["welcome"]);
+    localStorage.removeItem("user");
+  }
 
 }
