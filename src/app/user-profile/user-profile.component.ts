@@ -39,18 +39,6 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-deleteUser(): void {
-  this.fetchApiData.deleteUser(this.userData).subscribe((resp: any) => {
-    this.userData = {
-      ...resp,
-      id: resp._id,
-      password: this.userData.password,
-      token: this.userData.token
-    };
-    localStorage.setItem("user", JSON.stringify(this.userData));
-    console.log(this.userData);
-});
-} 
   editUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((data) => {
       localStorage.setItem('user', JSON.stringify(data));
@@ -68,6 +56,21 @@ getFavoriteMovies(): void {
       });
     });
 }
+  }
+
+  deleteUser(): void {
+    if (confirm('Are you sure?')) {
+      this.router.navigate(['welcome']).then(() => {
+        this.snackBar.open('You have successfully deleted your account', 'OK', {
+          duration: 2000
+        });
+      });
+      this.fetchApiData.deleteUser().subscribe((result) => {
+        console.log(result);
+        localStorage.clear();
+      })
+    }
+  }
 
 removeFromFavorite(movie: any): void {
     this.fetchApiData.deleteUserFavoriteMovies(this.userData.username, movie.movieTitle).subscribe((res:any) => {
