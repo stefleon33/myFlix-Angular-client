@@ -88,9 +88,13 @@ export class FetchApiDataService {
   }  
 
   // Making the api call for the get user endpoint
-  public getUser(username: String,): Observable<any> {
-    const token = this.getToken();
-    return this.http.get(apiUrl + 'users/' + username, {
+  public getUser(): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const token = localStorage.getItem("token");
+    console.log(user);
+    console.log(token);
+
+    return this.http.get(apiUrl + "users/" + user.Username, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -101,14 +105,16 @@ export class FetchApiDataService {
   } 
   
   // Making the api call for the get user favorite movie endpoint
-  public getUserFavoriteMovies(username: String, movieTitle: String): Observable<any> {
+  public getFavoriteMovies(): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = this.getToken();
-    return this.http.get(apiUrl + 'users/' + username + 'movies/' + movieTitle, {
+    return this.http.get(apiUrl + 'users/' + user.Username, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
     }).pipe(
       map(this.extractResponseData),
+      map((data) => data.FavortieMovies),
       catchError(this.handleError)
     );
   } 
@@ -158,9 +164,10 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the edit user endpoint
-  public editUser(username: String, userDetails: any): Observable<any> {
+  public editUser(updatedUser: any): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = this.getToken();
-    return this.http.put(apiUrl + 'users/' + username, userDetails, {
+    return this.http.put(apiUrl + 'users/' + user.Username, updatedUser, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -171,9 +178,10 @@ export class FetchApiDataService {
   } 
 
   // Making the api call for the delete user endpoint
-  public deleteUser(username: String): Observable<any> {
+  public deleteUser(): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = this.getToken();
-    return this.http.delete(apiUrl + 'users/' + username , {
+    return this.http.delete(apiUrl + 'users/' + user.Username , {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
