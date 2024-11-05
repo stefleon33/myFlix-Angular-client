@@ -66,6 +66,20 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  getFavorites(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+      if (resp.user && resp.user.FavoriteMovies) {
+        this.favorites = resp.user.FavoriteMovies;
+      } else {
+        this.favorites= []
+      }
+    },
+    (error: any) => {
+      console.error('Error fetching user data:', error);
+      this.favorites = [];
+    });
+  }
+
     } else {
       this.fetchApiData.addUserFavoriteMovies(user.id, movie.Title).subscribe(res => {
         icon?.setAttribute("fontIcon", "favorite_border");
