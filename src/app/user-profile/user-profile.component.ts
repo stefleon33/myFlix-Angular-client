@@ -23,5 +23,20 @@ ngOnInit(): void {
   this.getFavoriteMovies();
 }
 
+getUser(): void {
+    this.fetchApiData.getUser(this.userData.Username).subscribe((res: any) => {
+      this.userData={
+        ...res,
+        id: res._id,
+        Username: this.userData.Username, 
+        email: this.userData.Email, 
+        birthday: this.userData.birthday,
+        token: this.userData.token}
+      
+ localStorage.setItem("user", JSON.stringify(this.userData));
+      this.getFavoriteMovies();  
+});
+}
+
 
 }
