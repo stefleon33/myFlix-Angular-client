@@ -80,20 +80,36 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+addToFavorites(movieId: string): void {
+  const userObject = JSON.parse(localStorage.getItem("user") || "{}");
+  const username = userObject.Username;
+
+  const token = localStorage.getItem("token");
+
+    console.log(username);
+    console.log(movieId);
+
+    console.log("Adding to favorites:", movieId);
+
+  if (username && token) {
+    this.fetchApiData.addFavoriteMovie(username, movieId).subscribe(
+      (response) => {
+        console.log("Successfully added to favorites:", response);
+          this.snackBar.open("Movie added to favorites", "OK", {
+            duration: 2000,
+          });
+        },
+        (error) => {
+          console.error("Failed to add movie to favorites:", error);
+          this.snackBar.open("Failed to add movie to favorites", "OK", {
+            duration: 2000,
+          });
+        }
+      );
     } else {
-      this.fetchApiData.addUserFavoriteMovies(user.id, movie.Title).subscribe(res => {
-        icon?.setAttribute("fontIcon", "favorite_border");
-        
-        user.favoriteMovies = res.favoriteMovies;
-        localStorage.setItem("user", JSON.stringify(user));
-        this.snackBar.open(`Movie added to favorties`, 'OK', {
-          duration: 2000
-        });
-      }, err => {
-        console.error(err)
-    })
+      console.log("User data (username or token) is missing or undefined");
+    }
   }
-    localStorage.setItem("user", JSON.stringify(user));
   }
 
   redirectProfile(): void {
