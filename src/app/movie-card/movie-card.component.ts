@@ -13,6 +13,8 @@ import { MessageBoxComponent } from '../message-box/message-box.component';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  favorites: any [] = [];
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -22,6 +24,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    this.getFavorites();
   }
 
   //Function to get all movies using FetchApiDataService
