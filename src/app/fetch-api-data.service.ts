@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://movie-api33-c32ceac54882.herokuapp.com/';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,10 +38,11 @@ export class FetchApiDataService {
   // Making the api call for the get all movies endpoint
   public getAllMovies(): Observable<any> {
     const token = this.getToken();
-    return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
-      {
+    return this.http.get(apiUrl + 'movies', {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })}).pipe(
+      })
+    }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
