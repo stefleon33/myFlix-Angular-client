@@ -57,12 +57,14 @@
                 > 
                     Description
                 </button>
-                <mat-icon
-                    [ngClass]="movie.isFavorite ? 'favorite' : 'favorite_border'"
-                    (click)="modifyFavoriteMovies(movie)"
+                <button 
+                    mat-button 
+                    class="mat-icon-btn" 
+                    color="secondary"
+                    (click)="addToFavorites(movie._id)"
                 >
-                {{ movie.isFavorite ? 'favorite' : 'favorite_border'}}
-                </mat-icon>
+                <mat-icon>favorite_border</mat-icon>
+                </button>
             </mat-card-actions>
         </mat-card>
     </div> 
