@@ -21,10 +21,10 @@ export class UserProfileComponent implements OnInit {
     public router: Router
   ) { }
 
-ngOnInit(): void {
-  this.getUser();
-  this.getFavoriteMovies();
-}
+  ngOnInit(): void {
+    this.getUser();
+    this.getFavoriteMovies();
+  }
 
 getUser(): void {
     this.fetchApiData.getUser(this.userData.Username).subscribe((res: any) => {
