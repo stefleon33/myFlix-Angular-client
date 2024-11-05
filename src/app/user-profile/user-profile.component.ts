@@ -33,20 +33,6 @@ export class UserProfileComponent implements OnInit {
       this.userData.Email = this.user.Email, 
       this.userData.Birthday = this.user.Birthday,
 
-editUser(): void {
-  this.fetchApiData.editUser(this.userData.Username, this.userData).subscribe((resp: any) => {
-    this.userData = {
-      ...resp,
-      id: resp._id,
-      password: this.userData.password,
-      token: this.userData.token
-    };
-    localStorage.setItem("user", JSON.stringify(this.userData));
-    this.snackBar.open(`User profile updated`, 'OK', {
-          duration: 2000
-        });
-});
-}
       this.fetchApiData.getAllMovies().subscribe((response: any) =>{
         //this.favoriteMovies = response.filter((m: {_id:any}) => this.user.favoriteMovies.indexOf(m._id) >= 0)
       })
@@ -65,6 +51,10 @@ deleteUser(): void {
     console.log(this.userData);
 });
 } 
+  editUser(): void {
+    this.fetchApiData.editUser(this.userData).subscribe((data) => {
+      localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('Username', JSON.stringify(data.Username));
 
 getFavoriteMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((res:any) => {
@@ -73,6 +63,9 @@ getFavoriteMovies(): void {
     })
     }, (err: any) => {
       console.error(err);
+      this.snackBar.open('User profile has been updated', 'OK', {
+        duration: 2000
+      });
     });
 }
 
