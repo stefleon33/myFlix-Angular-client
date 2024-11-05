@@ -66,22 +66,6 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
-  modifyFavoriteMovies(movie: any): void {
-    let user = JSON.parse(localStorage.getItem("user") || "" ); 
-    let icon = document.getElementById(`${movie._id}-favorite-icon`);
-
-    if (user.favoriteMovies.includes(movie._id)) {
-      this.fetchApiData.deleteUserFavoriteMovies(user.id, movie.Title).subscribe(res => {
-        icon?.setAttribute("fontIcon", "favorite_border");
-        
-        user.favoriteMovies = res.favoriteMovies;
-        localStorage.setItem("user", JSON.stringify(user));
-        this.snackBar.open(`Movie removed from favorties`, 'OK', {
-          duration: 2000
-        });
-      }, err => {
-        console.error(err)
-      })
     } else {
       this.fetchApiData.addUserFavoriteMovies(user.id, movie.Title).subscribe(res => {
         icon?.setAttribute("fontIcon", "favorite_border");
