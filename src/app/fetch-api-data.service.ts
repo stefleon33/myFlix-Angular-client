@@ -159,7 +159,6 @@ export class FetchApiDataService {
       catchError(this.handleError)
     );
   }
-
   // Making the api call for the edit user endpoint
   public editUser(updatedUser: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
