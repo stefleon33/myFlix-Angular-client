@@ -60,10 +60,20 @@
                 <button 
                     mat-button 
                     class="mat-icon-btn" 
-                    color="secondary"
+                    *ngIf="!isFavoriteMovie(movie._id)" 
                     (click)="addToFavorites(movie._id)"
+                    color="primary"
                 >
-                <mat-icon>favorite_border</mat-icon>
+                    <mat-icon>favorite_border</mat-icon>
+                </button>
+                <button 
+                    mat-button 
+                    class="mat-flat-button" 
+                    *ngIf="isFavoriteMovie(movie._id)" 
+                    (click)="removeFromFavorites(movie._id)"
+                    color="accent"
+                >
+                    <mat-icon>favorite</mat-icon>
                 </button>
             </mat-card-actions>
         </mat-card>

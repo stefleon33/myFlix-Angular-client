@@ -13,7 +13,7 @@ import { MessageBoxComponent } from '../message-box/message-box.component';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
-  favorites: any [] = [];
+  favoriteMovies: any [] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -69,14 +69,14 @@ export class MovieCardComponent implements OnInit {
   getFavorites(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       if (resp.user && resp.user.FavoriteMovies) {
-        this.favorites = resp.user.FavoriteMovies;
+        this.favoriteMovies = resp.user.FavoriteMovies;
       } else {
-        this.favorites= []
+        this.favoriteMovies= []
       }
     },
     (error: any) => {
       console.error('Error fetching user data:', error);
-      this.favorites = [];
+      this.favoriteMovies = [];
     });
   }
 
@@ -112,40 +112,40 @@ addToFavorites(movieId: string): void {
   
 
 
- removeFromFavorites(movieId: string): void {
-  const userObject = JSON.parse(localStorage.getItem("user") || "{}");
-  const username = userObject.Username;
-  const token = localStorage.getItem("token");
+  removeFromFavorites(movieId: string): void {
+    const userObject = JSON.parse(localStorage.getItem("user") || "{}");
+    const username = userObject.Username;
+    const token = localStorage.getItem("token");
 
-    console.log(username);
-    console.log(movieId);
-    console.log("Removing from favorites:", movieId);
+      console.log(username);
+      console.log(movieId);
+      console.log("Removing from favorites:", movieId);
 
-  if (username && token) {
-    this.fetchApiData.deleteFavoriteMovie(username, movieId).subscribe(
-      (response) => {
-        console.log("Successfully removed movie from favorites:", response);
-          this.snackBar.open("Movie removed from favorites", "OK", {
-            duration: 2000,
-          });
-          this.getFavorites();
-        },
-        (error) => {
-          console.error("Failed to remove movie from favorites:", error);
-          this.snackBar.open("Failed to remove movie from favorites", "OK", {
-            duration: 2000,
-          });
-        }
-      );
-    } else {
-      console.log("User data (username or token) is missing or undefined");
-    }
+    if (username && token) {
+      this.fetchApiData.deleteFavoriteMovie(username, movieId).subscribe(
+        (response) => {
+          console.log("Successfully removed from favorites:", response);
+            this.snackBar.open("Movie removed from favorites", "OK", {
+              duration: 2000,
+            });
+          this.favoriteMovies = this.favoriteMovies.filter(movie => movie._id !== movieId);
+          },
+          (error) => {
+            console.error("Failed to remove movie from favorites:", error);
+            this.snackBar.open("Failed to remove movie from favorites", "OK", {
+              duration: 2000,
+            });
+          }
+        );
+      } else {
+        console.log("User data (username or token) is missing or undefined");
+      }
   }
   
-  /*isFavoriteMovie(movieID: string): boolean {
+  isFavoriteMovie(movieID: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user.FavoriteMovies.indexOf(movieID) >= 0;
-  }*/
+  }
 
   redirectProfile(): void {
     this.router.navigate(["profile"]);
