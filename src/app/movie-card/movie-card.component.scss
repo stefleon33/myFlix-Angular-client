@@ -46,22 +46,20 @@
 }
 .favorite-border {
     color: gray;
-    /* This is for the unfilled favorite icon */
 }
 
 .favorite-filled {
     color: red;
-    /* This is for the filled favorite icon */
 }
 
 .favorite-icon {
     transition: color 0.3s ease;
 }
+
 /* For medium-sized screens (tablet) */
 @media (max-width: 1024px) {
     .movie-card {
         flex: 1 1 calc(50% - 10px);
-        /* Two cards per row */
     }
 }
 
@@ -69,13 +67,11 @@
 @media (max-width: 768px) {
     .movie-card {
         flex: 1 1 calc(100% - 10px);
-        /* One card per row */
     }
 }
 
 @media (max-width: 480px) {
     .movie-card {
         flex: 1 1 100%;
-        /* Ensure it takes full width on very small screens */
     }
 }
