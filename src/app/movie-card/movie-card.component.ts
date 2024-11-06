@@ -87,7 +87,6 @@ addToFavorites(movieId: string): void {
 
     console.log(username);
     console.log(movieId);
-
     console.log("Adding to favorites:", movieId);
 
   if (username && token) {
