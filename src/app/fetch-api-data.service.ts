@@ -147,7 +147,9 @@ export class FetchApiDataService {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = this.getToken();
     const index = user.FavoriteMovies.indexOf(movieId);
-    user.FavoriteMovies.push(movieId);
+    if (index > -1) {
+      user.FavoriteMovies.splice(index, 1);
+    }
     localStorage.setItem('user', JSON.stringify(user));
     return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {
       headers: new HttpHeaders({
