@@ -14,7 +14,7 @@ export class UserProfileComponent implements OnInit {
   user: any = {};
   favoriteMovies: any[] = [];
   
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '', favoriteMovies: []};
+  @Input() userData: any = { Username: '', Password: '', Email: '', Birthday: '', favoriteMovies: []};
 
   constructor(
     public fetchApiData: FetchApiDataService,
