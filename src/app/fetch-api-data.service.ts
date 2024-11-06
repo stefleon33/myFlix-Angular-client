@@ -91,8 +91,9 @@ export class FetchApiDataService {
   public getUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem("token");
-    console.log(user);
-    console.log(token);
+    console.log('Type of Username:', typeof user.Username);
+    console.log('User:', user);
+    console.log('Token:', token);
 
     return this.http.get(apiUrl + "users/" + user.Username, {
       headers: new HttpHeaders({
