@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from  '@angular/router';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -76,34 +74,35 @@ export class UserProfileComponent implements OnInit {
       })
   }
 
-removeFromFavorites(movieId: string): void {
-  const userObject = JSON.parse(localStorage.getItem("user") || "{}");
-  const username = userObject.Username;
-  const token = localStorage.getItem("token");
+  removeFromFavorites(movieId: string): void {
+    const userObject = JSON.parse(localStorage.getItem("user") || "{}");
+    const username = userObject.Username;
+    const token = localStorage.getItem("token");
 
-    console.log(username);
-    console.log(movieId);
-    console.log("Removing from favorites:", movieId);
+      console.log(username);
+      console.log(movieId);
 
-  if (username && token) {
-    this.fetchApiData.deleteFavoriteMovie(username, movieId).subscribe(
-      (response) => {
-        console.log("Successfully removed from favorites:", response);
-          this.snackBar.open("Movie removed from favorites", "OK", {
-            duration: 2000,
-          });
-        this.favoriteMovies = this.favoriteMovies.filter(movie => movie._id !== movieId);
-        },
-        (error) => {
-          console.error("Failed to remove movie from favorites:", error);
-          this.snackBar.open("Failed to remove movie from favorites", "OK", {
-            duration: 2000,
-          });
-        }
-      );
-    } else {
-      console.log("User data (username or token) is missing or undefined");
-    }
+      console.log("Removing from favorites:", movieId);
+
+    if (username && token) {
+      this.fetchApiData.deleteFavoriteMovie(username, movieId).subscribe(
+        (response) => {
+          console.log("Successfully removed from favorites:", response);
+            this.snackBar.open("Movie removed from favorites", "OK", {
+              duration: 2000,
+            });
+          this.favoriteMovies = this.favoriteMovies.filter(movie => movie._id !== movieId);
+          },
+          (error) => {
+            console.error("Failed to remove movie from favorites:", error);
+            this.snackBar.open("Failed to remove movie from favorites", "OK", {
+              duration: 2000,
+            });
+          }
+        );
+      } else {
+        console.log("User data (username or token) is missing or undefined");
+      }
   }
 
 
