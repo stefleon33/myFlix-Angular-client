@@ -40,14 +40,29 @@ export class UserProfileComponent implements OnInit {
   }
 
   editUser(): void {
-    this.fetchApiData.editUser(this.userData).subscribe((data) => {
-      localStorage.setItem('user', JSON.stringify(data));
-      localStorage.setItem('Username', JSON.stringify(data.Username));
+    if (!this.userData.Username || !this.userData.Email || !this.userData.Birthday || !this.userData.Password) {
+        this.snackBar.open('Please fill in all the required fields.', 'OK', {
+        duration: 2000, 
+        });
+      return;
+    }
+      this.fetchApiData.editUser(this.userData).subscribe((data) => {
+        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('Username', JSON.stringify(data.Username));
 
-      this.snackBar.open('User profile has been updated', 'OK', {
-        duration: 2000
-      });
-    });
+        this.userData = data;
+
+        this.snackBar.open('User profile has been updated', 'OK', {
+          duration: 2000
+        });
+      },
+        (error) => {
+          console.error('Error updating user:', error);
+          this.snackBar.open('Failed to update user profile. Please try again later.', 'OK', {
+            duration: 2000,
+          });
+        }
+      );
   }
 
   deleteUser(): void {
