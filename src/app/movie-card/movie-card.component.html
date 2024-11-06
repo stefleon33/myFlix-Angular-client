@@ -1,10 +1,11 @@
 <div class="container">
-    <nav>
+    <nav class="nav" >
         <button 
             mat-button
             color="primary"
             style="margin-right: 10px;"
             (click)="redirectProfile()"
+            class="nav-button"
         > 
             User Profile
         </button>
@@ -12,6 +13,7 @@
             mat-button 
             color="primary" 
             (click)="logout()"
+            class="nav-button logout"
         >
             Logout
         </button>
