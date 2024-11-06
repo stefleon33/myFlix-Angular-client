@@ -111,24 +111,39 @@
         </mat-card-header>
         <mat-card>
             <mat-card-content>
-                <div *ngIf="favoriteMovies.length > 0; else noFavorites" style="display: flex;">
-                    <mat-card *ngFor="let movie of this.favoriteMovies;" style="width: 280px; margin-right: 10px;">
+                <div 
+                    *ngIf="favoriteMovies.length > 0; else noFavorites" 
+                    class="card-container"
+                >
+                    <mat-card 
+                        *ngFor="let movie of this.favoriteMovies;" 
+                        class="movie-card" 
+                    >
                         <mat-card-header>
-                            <mat-card-title>{{movie.Title}}</mat-card-title>
-                            <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+                            <mat-card-title>
+                                {{movie.Title}}
+                            </mat-card-title>
+                            <mat-card-subtitle>
+                                Directed by: {{movie.Director.Name}}
+                            </mat-card-subtitle>
                         </mat-card-header>
-                        <img src={{movie.ImagePath}} alt={{movie.Title}} />
+                        <img 
+                            src={{movie.ImagePath}} 
+                            alt={{movie.Title}} 
+                            class="movie-image"
+                        />
                         <mat-card-actions>
-                            <button mat-raised-button (click)="removeFromFavorites(movie._id)" color="primary"
-                                style="margin-right: 10px;">
-                                Remove from favorite
+                            <button 
+                                mat-raised-button 
+                                (click)="removeFromFavorites(movie._id)" 
+                                color="primary"
+                            >
+                                Remove from favorites
                             </button>
                         </mat-card-actions>
                     </mat-card>
                 </div>
-                <ng-template #noFavorites>
-                    <p>No favorite movies selected yet.</p>
-                </ng-template>
+                <ng-template #noFavorites> <p>No favorite movies selected yet.</p> </ng-template>
             </mat-card-content>
         </mat-card>
     </div>
