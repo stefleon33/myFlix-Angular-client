@@ -91,14 +91,6 @@
                     >
                         Update Profile Information
                     </button>
-                    <button 
-                        mat-raised-button 
-                        (click)="deleteUser()" 
-                        color="secondary" 
-                        style="margin-right: 10px;"
-                    >
-                        Delete Account
-                    </button>
                 </mat-card-actions>
             </mat-card-content>
         </mat-card>
@@ -146,5 +138,21 @@
                 <ng-template #noFavorites> <p>No favorite movies selected yet.</p> </ng-template>
             </mat-card-content>
         </mat-card>
+
+        <!--Delete User Profile-->
+        <mat-card-header>
+            <mat-card-title>
+                Delete User Profile
+            </mat-card-title>
+            </mat-card-header>
+            <mat-card>
+                <mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)="deleteUser()" color="secondary" style="margin-right: 10px;">
+                            Delete Account
+                        </button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
     </div>
 </div>
