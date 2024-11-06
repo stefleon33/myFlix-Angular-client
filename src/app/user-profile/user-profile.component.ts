@@ -83,7 +83,6 @@ removeFromFavorites(movieId: string): void {
 
     console.log(username);
     console.log(movieId);
-
     console.log("Removing from favorites:", movieId);
 
   if (username && token) {
