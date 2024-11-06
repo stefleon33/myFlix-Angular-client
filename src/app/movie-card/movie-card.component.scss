@@ -29,6 +29,19 @@
   max-width: 300px;
   object-fit: cover;
 }
+.favorite-border {
+    color: gray;
+    /* This is for the unfilled favorite icon */
+}
+
+.favorite-filled {
+    color: red;
+    /* This is for the filled favorite icon */
+}
+
+.favorite-icon {
+    transition: color 0.3s ease;
+}
 
 @media (max-width: 768px) {
     .movie-card {
