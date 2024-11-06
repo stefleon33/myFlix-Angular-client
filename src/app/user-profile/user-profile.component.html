@@ -102,18 +102,14 @@
                 <div style="display: flex;">
                     <mat-card *ngFor="let movie of this.favoriteMovies;" style="width: 280px; margin-right: 10px;">
                         <mat-card-header>
-                            <mat-card-title>{{movie.title}}</mat-card-title>
-                            <mat-card-subtitle>Directed by: {{movie.director.name}}</mat-card-subtitle>
+                            <mat-card-title>{{movie.Title}}</mat-card-title>
+                            <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
                         </mat-card-header>
-                        <img src={{movie.imagePath}} alt= {{movie.title}} />
+                        <img src={{movie.ImagePath}} alt={{movie.Title}} />
                         <mat-card-actions>
-                            <button 
-                            mat-raised-button 
-                            (click)="removeFromFavorite(movie)" 
-                            color="primary" 
-                            style="margin-right: 10px;"
-                            >
-                            Remove from favorite
+                            <button mat-raised-button (click)="removeFromFavorite(movie)" color="primary"
+                                style="margin-right: 10px;">
+                                Remove from favorite
                             </button>
                         </mat-card-actions>
                     </mat-card>
