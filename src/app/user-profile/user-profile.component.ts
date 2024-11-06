@@ -30,9 +30,10 @@ export class UserProfileComponent implements OnInit {
   getUser(): void {
     this.fetchApiData.getUser().subscribe((response: any) => {
       this.user = response;
-      this.userData.Username = this.user.Username, 
-      this.userData.Email = this.user.Email, 
-      this.userData.Birthday = this.user.Birthday,
+      const birthday = new Date(this.user.Birthday)
+      this.userData.Username = this.user.Username;
+      this.userData.Email = this.user.Email; 
+      this.userData.Birthday = birthday.toISOString().split('T')[0];
 
       this.fetchApiData.getAllMovies().subscribe((response: any) =>{
         //this.favoriteMovies = response.filter((m: {_id:any}) => this.user.favoriteMovies.indexOf(m._id) >= 0)
