@@ -116,26 +116,24 @@ addToFavorites(movieId: string): void {
  removeFromFavorites(movieId: string): void {
   const userObject = JSON.parse(localStorage.getItem("user") || "{}");
   const username = userObject.Username;
-
   const token = localStorage.getItem("token");
 
     console.log(username);
     console.log(movieId);
-
-    console.log("Adding to favorites:", movieId);
+    console.log("Removing from favorites:", movieId);
 
   if (username && token) {
     this.fetchApiData.deleteFavoriteMovie(username, movieId).subscribe(
       (response) => {
-        console.log("Successfully added to favorites:", response);
-          this.snackBar.open("Movie added to favorites", "OK", {
+        console.log("Successfully removed movie from favorites:", response);
+          this.snackBar.open("Movie removed from favorites", "OK", {
             duration: 2000,
           });
           this.getFavorites();
         },
         (error) => {
-          console.error("Failed to add movie to favorites:", error);
-          this.snackBar.open("Failed to add movie to favorites", "OK", {
+          console.error("Failed to remove movie from favorites:", error);
+          this.snackBar.open("Failed to remove movie from favorites", "OK", {
             duration: 2000,
           });
         }
