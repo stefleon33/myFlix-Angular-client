@@ -97,6 +97,7 @@ addToFavorites(movieId: string): void {
           this.snackBar.open("Movie added to favorites", "OK", {
             duration: 2000,
           });
+          this.getFavorites();
         },
         (error) => {
           console.error("Failed to add movie to favorites:", error);
@@ -130,6 +131,7 @@ addToFavorites(movieId: string): void {
           this.snackBar.open("Movie added to favorites", "OK", {
             duration: 2000,
           });
+          this.getFavorites();
         },
         (error) => {
           console.error("Failed to add movie to favorites:", error);
