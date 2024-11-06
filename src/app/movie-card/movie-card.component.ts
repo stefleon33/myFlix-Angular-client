@@ -83,7 +83,6 @@ export class MovieCardComponent implements OnInit {
 addToFavorites(movieId: string): void {
   const userObject = JSON.parse(localStorage.getItem("user") || "{}");
   const username = userObject.Username;
-
   const token = localStorage.getItem("token");
 
     console.log(username);
