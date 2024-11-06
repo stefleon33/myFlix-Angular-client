@@ -143,15 +143,11 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the delete user favorite movie endpoint
-  public deleteFavoriteMovie(movieId: String): Observable<any> {
+  public deleteFavoriteMovie(Username: String, movieId: String): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = this.getToken();
-    const index = user.FavortieMovies.indexOf(movieId);
-    
-    if (index > -1) { 
-      user.FavoriteMovies.splice(index, 1); 
-    }
-
+    const index = user.FavoriteMovies.indexOf(movieId);
+    user.FavoriteMovies.push(movieId);
     localStorage.setItem('user', JSON.stringify(user));
     return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {
       headers: new HttpHeaders({

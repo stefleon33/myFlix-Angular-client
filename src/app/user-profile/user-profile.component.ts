@@ -36,7 +36,7 @@ export class UserProfileComponent implements OnInit {
       this.userData.Birthday = birthday.toISOString().split('T')[0];
 
       this.fetchApiData.getAllMovies().subscribe((response: any) =>{
-        //this.favoriteMovies = response.filter((m: {_id:any}) => this.user.favoriteMovies.indexOf(m._id) >= 0)
+        this.favoriteMovies = response.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id))
       })
     })
   }
@@ -65,24 +65,49 @@ export class UserProfileComponent implements OnInit {
       })
     }
   }
+
   getFavoriteMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((res:any) => {
       this.favoriteMovies = res.filter((movieId: any) => {
-        return this.userData.favoriteMovies.includes(movieId)
+        return this.user.FavoriteMovies.includes(movieId)
       })
       }, (err: any) => {
         console.error(err);
       })
   }
 
-  removeFromFavorite(movie: any): void {
-    this.fetchApiData.deleteFavoriteMovie(movie.movieId).subscribe((res:any) => {
-    this.userData.favoriteMovies = res.favoriteMovies;
-    this.getFavoriteMovies();
-    }, (err: any) => {
-      console.error
-    });
-}
+removeFromFavorites(movieId: string): void {
+  const userObject = JSON.parse(localStorage.getItem("user") || "{}");
+  const username = userObject.Username;
+
+  const token = localStorage.getItem("token");
+
+    console.log(username);
+    console.log(movieId);
+
+    console.log("Adding to favorites:", movieId);
+
+  if (username && token) {
+    this.fetchApiData.deleteFavoriteMovie(username, movieId).subscribe(
+      (response) => {
+        console.log("Successfully removed from favorites:", response);
+          this.snackBar.open("Movie removed from favorites", "OK", {
+            duration: 2000,
+          });
+        this.favoriteMovies = this.favoriteMovies.filter(movie => movie._id !== movieId);
+        },
+        (error) => {
+          console.error("Failed to remove movie from favorites:", error);
+          this.snackBar.open("Failed to remove movie from favorites", "OK", {
+            duration: 2000,
+          });
+        }
+      );
+    } else {
+      console.log("User data (username or token) is missing or undefined");
+    }
+  }
+
 
   redirectMovies(): void {
     this.router.navigate(["movies"]);
