@@ -103,7 +103,6 @@
                 <strong>Favorite Movies</strong>
             </mat-card-title>
         </mat-card-header>
-        
             <mat-card-content>
                 <div 
                     *ngIf="favoriteMovies.length > 0; else noFavorites" 
@@ -141,7 +140,6 @@
                 <ng-template #noFavorites> <p>No favorite movies selected yet.</p> </ng-template>
             </mat-card-content>
         
-
         <!--Delete User Profile-->
         <mat-card class="delete-user">
         <mat-card-header>
