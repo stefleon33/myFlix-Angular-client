@@ -3,7 +3,7 @@
     background-color: rgb(107, 170, 243);
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .nav {
@@ -41,7 +41,7 @@ mat-card-header {
 .profile-card {
     flex: 1 1 calc(50% - 16px);
     box-sizing: border-box;
-    max-width: 50%;
+
 }
 
 .card-container {
@@ -102,8 +102,12 @@ mat-card-header {
 
 /* For small screens (mobile) */
 @media (max-width: 768px) {
+    .card-container {
+        justify-content: center;
+        align-items: center;
+    }
     .movie-card {
-        flex: 1 1 calc(100% - 10px);
+        flex: 1 1 calc(100% - 16px);
     }
     .profile-card {
         flex: 1 1 100%;
@@ -111,8 +115,16 @@ mat-card-header {
 }
 
 @media (max-width: 480px) {
+    .card-container {
+        justify-content: center;
+        align-items: center;
+    }
+    .favorites-title {
+        justify-content: center;
+        align-items: center;
+    }
     .movie-card {
-        flex: 1 1 100%;
+        flex: 1 1 calc(100% - 16px);
     }
 }
 
