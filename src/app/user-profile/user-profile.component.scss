@@ -25,6 +25,11 @@
     margin-left: auto;
 }
 
+mat-card-header {
+    display: flex;
+    padding-bottom: 10px;
+}
+
 .profile-container {
     display: flex;
     flex-wrap: wrap;
@@ -50,17 +55,13 @@
 .movie-card {
     flex: 1 1 auto;
     max-width: 300px;
+    height: 600px;
     box-sizing: border-box;
-}
-
-mat-card-header{
-    display: flex;
-    padding-bottom: 10px;
 }
 
 .movie-title {
     flex-wrap: wrap;
-    height: 80px;
+    height: 100px;
     align-items: center;
 }
 
