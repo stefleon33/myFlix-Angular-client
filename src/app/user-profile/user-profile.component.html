@@ -19,30 +19,30 @@
         </button>
     </nav>
 
-    <div>
-        <!--User Profile Information-->
-        <mat-card-header>
-            <mat-card-title>
-                Profile
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card>
+    <div class="profile-container">
+        <!--User Profile Information--> 
+        <mat-card class="profile-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <strong>Profile</strong>
+                </mat-card-title>
+            </mat-card-header>
             <mat-card-content>
-                <p><strong>Username:</strong> {{ userData.Username }}</p>
-                <p><strong>Password:</strong> ********* </p>
-                <p><strong>Email:</strong> {{ userData.Email }}</p>
-                <p><strong>Birthday:</strong> {{ userData.Birthday | date }}</p>
+                <p><i>Username:</i> {{ userData.Username }}</p>
+                <p><i>Password:</i> ********* </p>
+                <p><i>Email:</i> {{ userData.Email }}</p>
+                <p><i>Birthday:</i> {{ userData.Birthday | date }}</p>
 
             </mat-card-content>
         </mat-card>
 
         <!--Update User Profile Information-->
-        <mat-card-header>
-            <mat-card-title>
-                Update Profile Information
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card>
+        <mat-card class="profile-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <strong>Update Profile Information</strong>
+                </mat-card-title>
+            </mat-card-header>
             <mat-card-content>
                 Each field is required to update changes!
                 <form>
@@ -95,14 +95,15 @@
                 </mat-card-actions>
             </mat-card-content>
         </mat-card>
-        
+    </div>
+    <div>
         <!--User Favorite Movies-->
         <mat-card-header>
             <mat-card-title>
-                Favorite Movies
+                <strong>Favorite Movies</strong>
             </mat-card-title>
         </mat-card-header>
-        <mat-card>
+        
             <mat-card-content>
                 <div 
                     *ngIf="favoriteMovies.length > 0; else noFavorites" 
@@ -112,7 +113,7 @@
                         *ngFor="let movie of this.favoriteMovies;" 
                         class="movie-card" 
                     >
-                        <mat-card-header>
+                        <mat-card-header class="movie-title">
                             <mat-card-title>
                                 {{movie.Title}}
                             </mat-card-title>
@@ -130,6 +131,7 @@
                                 mat-raised-button 
                                 (click)="removeFromFavorites(movie._id)" 
                                 color="primary"
+                                class="remove-button"
                             >
                                 Remove from favorites
                             </button>
@@ -138,22 +140,28 @@
                 </div>
                 <ng-template #noFavorites> <p>No favorite movies selected yet.</p> </ng-template>
             </mat-card-content>
-        </mat-card>
+        
 
         <!--Delete User Profile-->
+        <mat-card class="delete-user">
         <mat-card-header>
             <mat-card-title>
-                Delete User Profile
+                <strong>Delete User Profile</strong>
             </mat-card-title>
             </mat-card-header>
-            <mat-card>
+            
                 <mat-card-content>
                     <mat-card-actions>
-                        <button mat-raised-button (click)="deleteUser()" color="secondary" style="margin-right: 10px;">
+                        <button 
+                            mat-raised-button 
+                            (click)="deleteUser()" 
+                            color="secondary" 
+                            style="margin-right: 10px;"
+                        >
                             Delete Account
                         </button>
                     </mat-card-actions>
                 </mat-card-content>
-            </mat-card>
+        </mat-card>
     </div>
 </div>
