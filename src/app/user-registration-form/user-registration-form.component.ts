@@ -28,7 +28,6 @@ export class UserRegistrationFormComponent implements OnInit {
    * This object is passed to the backend API when the user submits the registration form.
    * 
    * @type {object}
-   * @memberof UserRegistrationFormComponent
    */
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
