@@ -29,5 +29,15 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "include": [
+    "src/**/*.ts",                           
+    "src/app/**/*.ts"                         
+  ],
+  "exclude": [
+    "node_modules",                           
+    "dist",                                   
+    "test",                                   
+    "e2e"                                    
+  ]
 }
