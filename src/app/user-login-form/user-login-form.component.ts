@@ -65,7 +65,6 @@ export class UserLoginFormComponent implements OnInit {
   loginUser(): void {
     // Call the login API with user credentials
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
-      console.log('Login result:', result);
 
       // Logic for a successful user login
       // Store the user information and token in local storage
